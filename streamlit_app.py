@@ -2,18 +2,18 @@ import streamlit as st
 import pandas as pd
 import openpyxl
 
-# Load the Excel file
+# Function to load the Excel file (cache-friendly)
 @st.cache_data
 def load_excel(file_path):
-    return pd.ExcelFile(file_path)  # ✅ Fix: Use ExcelFile() to access sheets
+    return pd.read_excel(file_path, sheet_name=None)  # ✅ Loads all sheets as a dictionary
 
 # Set the correct file path
-file_path = "Questions Data Wizco.xlsx"  
+file_path = "/Users/marcelafunabashi/Downloads/Questions Data Wizco.xlsx"
 
 # Load the Excel file and get sheet names
 try:
     excel_data = load_excel(file_path)
-    sheet_names = excel_data.sheet_names  # ✅ Gets all sheet names
+    sheet_names = list(excel_data.keys())  # ✅ Gets all sheet names
 except FileNotFoundError:
     st.error("File not found. Please check the file path and try again.")
     st.stop()
@@ -25,7 +25,7 @@ selected_sheet = st.selectbox("Select a company", sheet_names)
 
 # Load and display the selected sheet
 if selected_sheet:
-    df = pd.read_excel(file_path, sheet_name=selected_sheet)  # ✅ Loads only the selected sheet
+    df = excel_data[selected_sheet]  # ✅ Retrieve DataFrame from dictionary
     st.write(f"### {selected_sheet} Data")
     st.dataframe(df, use_container_width=True)
 
