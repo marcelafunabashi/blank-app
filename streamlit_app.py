@@ -11,46 +11,17 @@ def load_excel(file_path):
 st.markdown(
     """
     <style>
-    /* General page styling */
-    .stApp {
-        background-color: #F5F5F5;
-    }
-
-    /* Title styling */
-    .stMarkdown h1 {
-        color: #FF5733;
-        text-align: center;
-        font-size: 36px;
-        font-weight: bold;
-    }
-
-    /* Fix overlapping border issue */
-    .stSelectbox div {
-        background-color: #fff !important;
+    /* Fix overlapping border issue for selectbox */
+    div[data-baseweb="select"] > div {
         border: 1px solid #FF5733 !important;
-        border-radius: 6px;
-        padding: 5px;
+        border-radius: 6px !important;
+        box-shadow: none !important;
     }
 
-    /* Improve table styling */
-    .stDataFrame {
-        border: 1px solid #FF5733 !important;
-        border-radius: 6px;
-        overflow: hidden;
-    }
-
-    /* Fix button padding */
-    .stButton > button {
-        background-color: #FF5733;
-        color: white;
-        border-radius: 6px;
-        padding: 8px 14px;
-        font-size: 16px;
-        border: none;
-        transition: 0.3s;
-    }
-    .stButton > button:hover {
-        background-color: #E04B25;
+    /* Remove unnecessary outlines */
+    div[data-baseweb="select"] > div:focus-within {
+        outline: none !important;
+        border: 1px solid #E04B25 !important;
     }
     </style>
     """,
@@ -68,7 +39,7 @@ except FileNotFoundError:
     st.error("File not found. Please check the file path and try again.")
     st.stop()
 
-st.title("📋 Interview Questions Data")
+st.title("Sample Interview Questions")
 
 # Dropdown to select sheet
 selected_sheet = st.selectbox("Select a company", sheet_names)
