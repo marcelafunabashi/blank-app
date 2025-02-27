@@ -8,7 +8,7 @@ def load_excel(file_path):
     return pd.read_excel(file_path, sheet_name=None)  # ✅ Loads all sheets as a dictionary
 
 # Set the correct file path
-file_path = "Questions Data Wizco.xlsx"
+file_path = "CATEGORIZED QUESTIONS.xlsx"
 
 # Load the Excel file and get sheet names
 try:
