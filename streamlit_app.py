@@ -26,11 +26,6 @@ selected_sheet = st.selectbox("Select a company", sheet_names)
 # Load and display the selected sheet
 if selected_sheet:
     df = excel_data[selected_sheet]  # ✅ Retrieve DataFrame from dictionary
-    
-    # Insert "Questions" as the first row
-    header_row = pd.DataFrame([["Questions"] + [""] * (df.shape[1] - 1)], columns=df.columns)
-    df = pd.concat([header_row, df], ignore_index=True)  # ✅ Add "Questions" row
-    
     st.write(f"### {selected_sheet} Questions")
     st.dataframe(df, use_container_width=True)
 
