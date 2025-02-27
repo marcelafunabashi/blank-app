@@ -7,47 +7,44 @@ import openpyxl
 def load_excel(file_path):
     return pd.read_excel(file_path, sheet_name=None)  # ✅ Loads all sheets as a dictionary
 
-# Apply custom CSS styling
+# Improved CSS styling
 st.markdown(
     """
     <style>
-    /* Set background colors */
+    /* General page styling */
     .stApp {
         background-color: #F5F5F5;
     }
-    .css-18e3th9 {
-        background-color: #FF5733 !important;  /* Sidebar background */
-    }
-    .css-1d391kg {
-        background-color: #E0E0E0 !important;  /* Main container background */
-    }
 
-    /* Customize the title */
+    /* Title styling */
     .stMarkdown h1 {
         color: #FF5733;
         text-align: center;
         font-size: 36px;
+        font-weight: bold;
     }
 
-    /* Style the dropdown */
+    /* Fix overlapping border issue */
     .stSelectbox div {
         background-color: #fff !important;
-        border: 2px solid #FF5733 !important;
-        border-radius: 8px;
+        border: 1px solid #FF5733 !important;
+        border-radius: 6px;
+        padding: 5px;
     }
 
-    /* Style the data table */
+    /* Improve table styling */
     .stDataFrame {
-        border: 2px solid #FF5733 !important;
-        border-radius: 8px;
+        border: 1px solid #FF5733 !important;
+        border-radius: 6px;
+        overflow: hidden;
     }
 
-    /* Style buttons */
+    /* Fix button padding */
     .stButton > button {
         background-color: #FF5733;
         color: white;
-        border-radius: 8px;
-        padding: 10px 16px;
+        border-radius: 6px;
+        padding: 8px 14px;
         font-size: 16px;
         border: none;
         transition: 0.3s;
@@ -73,10 +70,6 @@ except FileNotFoundError:
 
 st.title("📋 Interview Questions Data")
 
-# Sidebar for additional controls
-st.sidebar.header("Navigation")
-st.sidebar.write("Choose a company to view its interview questions.")
-
 # Dropdown to select sheet
 selected_sheet = st.selectbox("Select a company", sheet_names)
 
@@ -93,7 +86,7 @@ if st.button("Download as CSV"):
 
 # Footer
 st.markdown("---")
-st.markdown("💡 *Built with ❤️ in Streamlit*")
+
 
 
 
